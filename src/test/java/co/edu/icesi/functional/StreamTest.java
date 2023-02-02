@@ -20,6 +20,7 @@ public class StreamTest {
     @Test
     public void testStreamFilter(){
         List<IcesiUser> filteredUsers = defaultIcesiUsers().stream().filter(IcesiUser::isActive).toList();
+        assertTrue(filteredUsers.get(0).isActive());
 
     }
 
