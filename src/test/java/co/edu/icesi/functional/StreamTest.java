@@ -8,14 +8,17 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class StreamTest {
 
 
     @Test
     public void testStreamMap(){
         List<String> lastNames = defaultIcesiUsers().stream().map(IcesiUser::getLastName).toList();
-
-
+        var lastName1 = lastNames.get(0);
+        assertEquals("Doe", lastName1);
     }
 
     @Test
