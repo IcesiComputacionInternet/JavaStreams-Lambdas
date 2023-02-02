@@ -25,7 +25,7 @@ public class StreamTest {
     public void testStreamFilter(){
         List<IcesiUser> filteredUsers = defaultIcesiUsers().stream().filter(IcesiUser::isActive).toList();
         assertEquals("Doe", filteredUsers.get(0).getLastName());
-        assertEquals(false, filteredUsers.get(0).isActive());
+        assertEquals(true, filteredUsers.get(0).isActive());
     }
 
     @Test
