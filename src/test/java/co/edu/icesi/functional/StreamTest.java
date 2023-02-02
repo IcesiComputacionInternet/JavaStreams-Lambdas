@@ -2,6 +2,8 @@ package co.edu.icesi.functional;
 
 import co.edu.icesi.model.IcesiUser;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,13 +17,20 @@ public class StreamTest {
     public void testStreamMap(){
         List<String> lastNames = defaultIcesiUsers().stream().map(IcesiUser::getLastName).toList();
 
+        assertNotNull(lastNames);
+        assertEquals(defaultIcesiUsers().size(), lastNames.size());
+
 
     }
 
     @Test
     public void testStreamFilter(){
         List<IcesiUser> filteredUsers = defaultIcesiUsers().stream().filter(IcesiUser::isActive).toList();
-
+        assertNotNull(filteredUsers);
+        assertNotEquals(filteredUsers.size(), defaultIcesiUsers().size());
+        for(IcesiUser test:filteredUsers){
+            assertTrue(test.isActive());
+        }
     }
 
     @Test
