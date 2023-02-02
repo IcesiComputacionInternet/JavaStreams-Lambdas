@@ -25,8 +25,7 @@ public class StreamTest {
     @Test
     public void testStreamFilter(){
         List<IcesiUser> filteredUsers = defaultIcesiUsers().stream().filter(IcesiUser::isActive).toList();
-        var active1 = filteredUsers.get(0).isActive();
-        assertEquals(true,active1);
+        assertTrue(filteredUsers.get(0).isActive());
 
     }
 
@@ -34,12 +33,17 @@ public class StreamTest {
     public void testStreamFlatMap(){
         List<List<IcesiUser>> listOfListOfIcesiUsers = List.of(defaultIcesiUsers(),defaultIcesiUsers());
         List<IcesiUser> result = listOfListOfIcesiUsers.stream().flatMap(Collection::stream).toList();
+        int size = defaultIcesiUsers().size()+1;
+        assertEquals(result.get(size).getName(),result.get(0).getName());
+
+
     }
 
     @Test
     public void testStreamReduce(){
         String names = defaultIcesiUsers().stream().map(IcesiUser::getName)
                 .reduce("", (concatenatedValue, nextValue) -> concatenatedValue.concat("," + nextValue));
+        assertEquals(names,",John,John,John,John");
 
     }
 
