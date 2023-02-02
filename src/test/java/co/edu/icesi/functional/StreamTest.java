@@ -37,12 +37,16 @@ public class StreamTest {
     public void testStreamFlatMap(){
         List<List<IcesiUser>> listOfListOfIcesiUsers = List.of(defaultIcesiUsers(),defaultIcesiUsers());
         List<IcesiUser> result = listOfListOfIcesiUsers.stream().flatMap(Collection::stream).toList();
+        assertNotNull(result);
+        assertEquals(result.get(defaultIcesiUsers().size()+1).getName(), result.get(0).getName());
+        assertEquals(result.get(defaultIcesiUsers().size()+2).getName(), result.get(1).getName());
+
     }
 
     @Test
     public void testStreamReduce(){
         String names = defaultIcesiUsers().stream().map(IcesiUser::getName).reduce("", (concatenatedValue, nextValue) -> concatenatedValue.concat("," + nextValue));
-
+        assertEquals(",John,John,John,John", names);
     }
 
     @Test
