@@ -3,6 +3,8 @@ package co.edu.icesi.functional;
 import co.edu.icesi.model.IcesiUser;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,14 +16,13 @@ public class StreamTest {
     @Test
     public void testStreamMap(){
         List<String> lastNames = defaultIcesiUsers().stream().map(IcesiUser::getLastName).toList();
-
-
+        var lastNameExample = lastNames.get(0);
+        assertEquals("Doe", lastNameExample);
     }
 
     @Test
     public void testStreamFilter(){
         List<IcesiUser> filteredUsers = defaultIcesiUsers().stream().filter(IcesiUser::isActive).toList();
-
     }
 
     @Test
