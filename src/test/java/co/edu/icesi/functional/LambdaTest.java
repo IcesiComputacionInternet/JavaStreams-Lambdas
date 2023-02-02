@@ -19,7 +19,7 @@ public class LambdaTest {
 
     @Test
     public void testSupplier(){
-        String result = lambdaHelper.stringSupplierMethod( () -> "Hello world!");
+        String result = lambdaHelper.stringSupplierMethod(() -> "Hello world!");
         assertEquals("Hello world!", result);
     }
 
