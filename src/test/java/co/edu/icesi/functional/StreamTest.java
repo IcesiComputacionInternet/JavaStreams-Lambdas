@@ -14,6 +14,7 @@ public class StreamTest {
     @Test
     public void testStreamMap(){
         List<String> lastNames = defaultIcesiUsers().stream().map(IcesiUser::getLastName).toList();
+        // Sape, first push
 
 
     }
