@@ -1,12 +1,17 @@
 package co.edu.icesi.functional;
 
 import co.edu.icesi.model.IcesiUser;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StreamTest {
 
@@ -14,6 +19,7 @@ public class StreamTest {
     @Test
     public void testStreamMap(){
         List<String> lastNames = defaultIcesiUsers().stream().map(IcesiUser::getLastName).toList();
+       assertEquals("Doenson",lastNames.get(1));
 
 
     }
@@ -21,6 +27,7 @@ public class StreamTest {
     @Test
     public void testStreamFilter(){
         List<IcesiUser> filteredUsers = defaultIcesiUsers().stream().filter(IcesiUser::isActive).toList();
+        assertTrue(filteredUsers.get(0).isActive());
 
     }
 
@@ -28,6 +35,7 @@ public class StreamTest {
     public void testStreamFlatMap(){
         List<List<IcesiUser>> listOfListOfIcesiUsers = List.of(defaultIcesiUsers(),defaultIcesiUsers());
         List<IcesiUser> result = listOfListOfIcesiUsers.stream().flatMap(Collection::stream).toList();
+
     }
 
     @Test
