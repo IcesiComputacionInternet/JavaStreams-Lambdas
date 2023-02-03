@@ -8,20 +8,24 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class StreamTest {
 
 
     @Test
     public void testStreamMap(){
         List<String> lastNames = defaultIcesiUsers().stream().map(IcesiUser::getLastName).toList();
-
+        String lastName1 = lastNames.get(0);
+        assertEquals("Doe", lastName1);
 
     }
 
     @Test
     public void testStreamFilter(){
         List<IcesiUser> filteredUsers = defaultIcesiUsers().stream().filter(IcesiUser::isActive).toList();
-
+        String name = filteredUsers.get(0).getName();
+        assertEquals("John", name);
     }
 
     @Test
@@ -33,7 +37,7 @@ public class StreamTest {
     @Test
     public void testStreamReduce(){
         String names = defaultIcesiUsers().stream().map(IcesiUser::getName).reduce("", (concatenatedValue, nextValue) -> concatenatedValue.concat("," + nextValue));
-
+        assertEquals("John", names);
     }
 
     @Test
@@ -55,6 +59,7 @@ public class StreamTest {
         IcesiUser icesiUser4 = defaultIcesiUser();
         icesiUser4.setId(4);
         icesiUsers.add(icesiUser4);
+
         return icesiUsers;
     }
 
